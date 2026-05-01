@@ -437,6 +437,51 @@ void doTest(const HttpClientPtr &client, std::shared_ptr<test::Case> TEST_CTX)
                             CHECK(jsonPtr);
                             CHECK(jsonPtr->asString() == "GET");
                         });
+    // WebDAV methods
+    req = HttpRequest::newHttpRequest();
+    req->setMethod(drogon::Propfind);
+    req->setPath("/api/method/webdav");
+    client->sendRequest(req,
+                        [req, TEST_CTX](ReqResult result,
+                                        const HttpResponsePtr &resp) {
+                            REQUIRE(result == ReqResult::Ok);
+                            auto jsonPtr = resp->getJsonObject();
+                            CHECK(jsonPtr);
+                            CHECK(jsonPtr->asString() == "PROPFIND");
+                        });
+    req = HttpRequest::newHttpRequest();
+    req->setMethod(drogon::Mkcol);
+    req->setPath("/api/method/webdav");
+    client->sendRequest(req,
+                        [req, TEST_CTX](ReqResult result,
+                                        const HttpResponsePtr &resp) {
+                            REQUIRE(result == ReqResult::Ok);
+                            auto jsonPtr = resp->getJsonObject();
+                            CHECK(jsonPtr);
+                            CHECK(jsonPtr->asString() == "MKCOL");
+                        });
+    req = HttpRequest::newHttpRequest();
+    req->setMethod(drogon::Copy);
+    req->setPath("/api/method/webdav");
+    client->sendRequest(req,
+                        [req, TEST_CTX](ReqResult result,
+                                        const HttpResponsePtr &resp) {
+                            REQUIRE(result == ReqResult::Ok);
+                            auto jsonPtr = resp->getJsonObject();
+                            CHECK(jsonPtr);
+                            CHECK(jsonPtr->asString() == "COPY");
+                        });
+    req = HttpRequest::newHttpRequest();
+    req->setMethod(drogon::Move);
+    req->setPath("/api/method/webdav");
+    client->sendRequest(req,
+                        [req, TEST_CTX](ReqResult result,
+                                        const HttpResponsePtr &resp) {
+                            REQUIRE(result == ReqResult::Ok);
+                            auto jsonPtr = resp->getJsonObject();
+                            CHECK(jsonPtr);
+                            CHECK(jsonPtr->asString() == "MOVE");
+                        });
     /// Test static function
     req = HttpRequest::newHttpRequest();
     req->setMethod(drogon::Get);

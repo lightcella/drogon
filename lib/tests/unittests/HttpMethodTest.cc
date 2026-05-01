@@ -100,6 +100,27 @@ DROGON_TEST(MethodSerialization)
     CHECK(serializeMethod(Move) == "MOVE");
 }
 
+DROGON_TEST(AllMethodsFitParserLimit)
+{
+    // HttpRequestParser rejects methods longer than METHOD_MAX_LEN when the
+    // space delimiter hasn't arrived yet (partial read).  Verify every valid
+    // method string fits within that limit.
+    // METHOD_MAX_LEN is defined in HttpRequestParser.cc — keep in sync.
+    static constexpr size_t METHOD_MAX_LEN = 8;  // strlen("PROPFIND")
+
+    CHECK(std::string_view("GET").size() <= METHOD_MAX_LEN);
+    CHECK(std::string_view("POST").size() <= METHOD_MAX_LEN);
+    CHECK(std::string_view("HEAD").size() <= METHOD_MAX_LEN);
+    CHECK(std::string_view("PUT").size() <= METHOD_MAX_LEN);
+    CHECK(std::string_view("DELETE").size() <= METHOD_MAX_LEN);
+    CHECK(std::string_view("OPTIONS").size() <= METHOD_MAX_LEN);
+    CHECK(std::string_view("PATCH").size() <= METHOD_MAX_LEN);
+    CHECK(std::string_view("PROPFIND").size() <= METHOD_MAX_LEN);
+    CHECK(std::string_view("MKCOL").size() <= METHOD_MAX_LEN);
+    CHECK(std::string_view("COPY").size() <= METHOD_MAX_LEN);
+    CHECK(std::string_view("MOVE").size() <= METHOD_MAX_LEN);
+}
+
 DROGON_TEST(InvalidMethodsRejected)
 {
     auto [ok, m] = parseMethod("INVALID");

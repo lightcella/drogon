@@ -278,6 +278,22 @@ void press::handleCommand(std::vector<std::string> &parameters)
             {
                 return drogon::HttpMethod::Patch;
             }
+            else if (methodStr == "PROPFIND")
+            {
+                return drogon::HttpMethod::Propfind;
+            }
+            else if (methodStr == "MKCOL")
+            {
+                return drogon::HttpMethod::Mkcol;
+            }
+            else if (methodStr == "COPY")
+            {
+                return drogon::HttpMethod::Copy;
+            }
+            else if (methodStr == "MOVE")
+            {
+                return drogon::HttpMethod::Move;
+            }
             else
             {
                 outputErrorAndExit("invalid method");

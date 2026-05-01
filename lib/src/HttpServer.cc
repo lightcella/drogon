@@ -421,7 +421,9 @@ void HttpServer::onHttpRequest(
     {
         auto resp = HttpResponse::newHttpResponse();
         resp->setContentTypeCode(ContentType::CT_TEXT_PLAIN);
-        resp->addHeader("Allow", "GET,HEAD,POST,PUT,DELETE,OPTIONS,PATCH");
+        resp->addHeader("Allow",
+                        "GET,HEAD,POST,PUT,DELETE,OPTIONS,PATCH,"
+                        "PROPFIND,MKCOL,COPY,MOVE");
         resp->setExpiredTime(0);
         callback(resp);
         return;

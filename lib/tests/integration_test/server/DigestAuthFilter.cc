@@ -23,6 +23,14 @@ std::string method2String(HttpMethod m)
             return "OPTIONS";
         case Patch:
             return "PATCH";
+        case Propfind:
+            return "PROPFIND";
+        case Mkcol:
+            return "MKCOL";
+        case Copy:
+            return "COPY";
+        case Move:
+            return "MOVE";
         default:
             return "INVALID";
     }

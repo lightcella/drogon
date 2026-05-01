@@ -54,3 +54,31 @@ void MethodTest::postRegex(
     LOG_DEBUG << regStr;
     makePostRespose(callback);
 }
+
+void MethodTest::handlePropfind(
+    const HttpRequestPtr &req,
+    std::function<void(const HttpResponsePtr &)> &&callback)
+{
+    callback(drogon::HttpResponse::newHttpJsonResponse("PROPFIND"));
+}
+
+void MethodTest::handleMkcol(
+    const HttpRequestPtr &req,
+    std::function<void(const HttpResponsePtr &)> &&callback)
+{
+    callback(drogon::HttpResponse::newHttpJsonResponse("MKCOL"));
+}
+
+void MethodTest::handleCopy(
+    const HttpRequestPtr &req,
+    std::function<void(const HttpResponsePtr &)> &&callback)
+{
+    callback(drogon::HttpResponse::newHttpJsonResponse("COPY"));
+}
+
+void MethodTest::handleMove(
+    const HttpRequestPtr &req,
+    std::function<void(const HttpResponsePtr &)> &&callback)
+{
+    callback(drogon::HttpResponse::newHttpJsonResponse("MOVE"));
+}

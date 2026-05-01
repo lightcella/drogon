@@ -26,7 +26,7 @@ using namespace trantor;
 using namespace drogon;
 
 static constexpr size_t CRLF_LEN = 2;            // strlen("crlf")
-static constexpr size_t METHOD_MAX_LEN = 7;      // strlen("OPTIONS")
+static constexpr size_t METHOD_MAX_LEN = 8;      // strlen("PROPFIND")
 static constexpr size_t TRUNK_LEN_MAX_LEN = 16;  // 0xFFFFFFFF,FFFFFFFF
 
 HttpRequestParser::HttpRequestParser(const trantor::TcpConnectionPtr &connPtr)

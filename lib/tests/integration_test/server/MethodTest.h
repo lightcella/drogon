@@ -16,6 +16,10 @@ class MethodTest : public drogon::HttpController<MethodTest>
     ADD_METHOD_VIA_REGEX(MethodTest::postRegex,
                          "/api/method/regex/(.*)/test",
                          Post);
+    ADD_METHOD_TO(MethodTest::handlePropfind, "/api/method/webdav", Propfind);
+    ADD_METHOD_TO(MethodTest::handleMkcol, "/api/method/webdav", Mkcol);
+    ADD_METHOD_TO(MethodTest::handleCopy, "/api/method/webdav", Copy);
+    ADD_METHOD_TO(MethodTest::handleMove, "/api/method/webdav", Move);
     METHOD_LIST_END
 
     void get(const HttpRequestPtr &req,
@@ -34,4 +38,14 @@ class MethodTest : public drogon::HttpController<MethodTest>
     void postRegex(const HttpRequestPtr &req,
                    std::function<void(const HttpResponsePtr &)> &&callback,
                    std::string regStr);
+
+    void handlePropfind(
+        const HttpRequestPtr &req,
+        std::function<void(const HttpResponsePtr &)> &&callback);
+    void handleMkcol(const HttpRequestPtr &req,
+                     std::function<void(const HttpResponsePtr &)> &&callback);
+    void handleCopy(const HttpRequestPtr &req,
+                    std::function<void(const HttpResponsePtr &)> &&callback);
+    void handleMove(const HttpRequestPtr &req,
+                    std::function<void(const HttpResponsePtr &)> &&callback);
 };

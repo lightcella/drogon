@@ -388,6 +388,18 @@ int main()
             case Patch:
                 std::cout << " (PATCH) ";
                 break;
+            case Propfind:
+                std::cout << " (PROPFIND) ";
+                break;
+            case Mkcol:
+                std::cout << " (MKCOL) ";
+                break;
+            case Copy:
+                std::cout << " (COPY) ";
+                break;
+            case Move:
+                std::cout << " (MOVE) ";
+                break;
             default:
                 break;
         }
